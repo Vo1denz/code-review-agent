@@ -24,7 +24,20 @@ class GitHubFetcher:
         if response.status_code != 200:
             raise Exception("Failed to fetch PR")
 
+        diff_headers = {
+            **self.headers,
+            "Accept": "application/vnd.github.v3.diff"
+        }
+
+        diff_response = requests.get(
+            url,
+            headers=diff_headers
+        )
+
+        if diff_response.status_code != 200:
+            raise Exception("Failed to fetch PR diff")
+
         return {
-                    "metadata": response.json(),
-                    "diff": diff_response.text
-                }
+            "metadata": response.json(),
+            "diff": diff_response.text
+        }

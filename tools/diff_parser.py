@@ -21,10 +21,16 @@ class DiffParser:
                 for line in hunk:
 
                     if line.is_added:
-                        file_data["added_lines"].append(line.value)
+                        file_data["added_lines"].append({
+                            "line_number": line.target_line_no,
+                            "content": line.value
+                        })
 
                     elif line.is_removed:
-                        file_data["removed_lines"].append(line.value)
+                        file_data["removed_lines"].append({
+                            "line_number": line.source_line_no,
+                            "content": line.value
+                        })
 
             parsed_files.append(file_data)
 
