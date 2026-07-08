@@ -263,46 +263,5 @@ python main.py \
 
 ---
 
-## Future Improvements
 
-- GitHub Action integration
-- Inline code review comments
-- Support for multiple LLM providers
-- Repository-wide context retrieval
-- RAG-based code understanding
-- Multi-language support
-- Severity scoring dashboard
-- Web interface using Streamlit or FastAPI
 
----
-
-## Learning Outcomes
-
-This project demonstrates practical experience with:
-
-- LangChain Agent Architecture
-- AI-powered Code Review
-- GitHub REST API Integration
-- Parallel LLM Workflows
-- Prompt Engineering
-- Structured LLM Outputs
-- Pydantic Validation
-- Software Security Analysis
-- Diff Parsing
-- Production-ready Python Design
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Author
-
-**Void**
-
-Passionate about AI, Agentic Systems, and Software Engineering.
-
-Always building projects that solve real developer problems.
