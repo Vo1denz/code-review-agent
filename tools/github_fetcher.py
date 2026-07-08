@@ -24,4 +24,7 @@ class GitHubFetcher:
         if response.status_code != 200:
             raise Exception("Failed to fetch PR")
 
-        return response.json()
+        return {
+                    "metadata": response.json(),
+                    "diff": diff_response.text
+                }
