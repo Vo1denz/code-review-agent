@@ -9,19 +9,25 @@ class GitHubFetcher:
         self.token = os.getenv("GITHUB_TOKEN")
 
         self.headers = {
-            "Authorization": f"Bearer {self.token}",
-            "Accept" : "application/vnd.github+json"
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28"
         }
+
+        if self.token:
+            self.headers["Authorization"] = f"Bearer {self.token}"
 
     def fetch_pr(self, owner: str, repo: str, pr_number: int):
         url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}"
 
         response = requests.get(
             url,
-            headers=self.headers
+            headers=self.headers,
+            timeout=30
         )
 
         if response.status_code != 200:
+            print(response.status_code)
+            print(response.text)
             raise Exception("Failed to fetch PR")
 
         diff_headers = {
@@ -31,10 +37,13 @@ class GitHubFetcher:
 
         diff_response = requests.get(
             url,
-            headers=diff_headers
+            headers=diff_headers,
+            timeout=30
         )
 
         if diff_response.status_code != 200:
+            print(diff_response.status_code)
+            print(diff_response.text)
             raise Exception("Failed to fetch PR diff")
 
         return {

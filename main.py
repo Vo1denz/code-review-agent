@@ -1,4 +1,13 @@
 import argparse
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+if not os.getenv("LANGCHAIN_API_KEY"):
+    os.environ["LANGCHAIN_TRACING_V2"] = "false"
+    os.environ["LANGSMITH_TRACING"] = "false"
 
 from utils.pr_url_parser import PRUrlParser
 from tools.github_fetcher import GitHubFetcher
